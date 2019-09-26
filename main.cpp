@@ -3,16 +3,21 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include <iterator>
+#include <utility>
 #include <string.h>
 #include <vector>
 #include "QuickSort.h"
+#include "MergeSort.h"
+#include "HeapSort.h"
+#include "ShellSort.h"
+#include <string.h>
 
 using namespace std;
-using namespace QuickSort;
 
-int main(){
-    /*std::ifstream infile("data1.txt");
+int main() {
+    std::ifstream infile("data1.txt");
     std::vector<int> Numeros;
     int numero;
     while( infile >> numero)
@@ -20,44 +25,24 @@ int main(){
         Numeros.push_back(numero);
     }
 
-    std::copy(Numeros.begin(),Numeros.end(),
-              std::ostream_iterator<int>(std::cout," "));
-    std::cout << '\n';
-    Numeros.push_back(13);
-    std::copy(Numeros.begin(),Numeros.end(),
-              std::ostream_iterator<int>(std::cout," "));
-    std::cout << '\n';
+    std::copy(Numeros.begin(),Numeros.end(),std::ostream_iterator<int>(std::cout," "));
+    std::cout << endl;
+    std::cout << endl;
 
-    string si("Hello");
-    string s2("Hello World");
-    string s3("Hiya");
-    for(auto &c:s3)
-        c=toupper(c);
-    cout<<s3<<endl;
-    string d= si + ", " + s2 + '\n';
-    if(s3<s2)
-        return 1;
+    QuickSort::quicksort(Numeros);
+    QuickSort::imprimir(Numeros,Numeros.begin(),Numeros.end());
+    std::cout << std::endl;
+    std::cout << endl;
 
-    vector<string> v6{10};
-    vector<string> svec{10, "null"};
 
-    for (int i = 0; i < 9 ; ++i) {
-        cout <<1<<endl;
-    }
-    unsigned buf_size = 1024;
-    int ia[4 * 7 - 14];
-    char st[12] = "fundamental";
-    string sa[10];
-    for (int j = 0; j <10 ; ++j) {
-        cout<<sa[j]<<endl;
-    }
-    int arr[] = {0,1,2,3,4,5,6,7,8,9};
-    int *p = &arr[0];
-    int *q = arr;
-*/
-
-    vector<int> v={3,6,2,4,7};
-    QuickSort::quicksort(v.begin(),v.end());
+    int x[]={2,1};
+    std::copy(begin(x),end(x),std::ostream_iterator<int>(std::cout," "));
+    std::cout << endl;
+    std::cout << endl;
+    
+    QuickSort::quicksort(begin(x),end(x)-1);
+    QuickSort::imprimir(x,begin(x),end(x));
+    std::cout << std::endl;
 
     return EXIT_SUCCESS;
 }
