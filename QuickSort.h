@@ -11,20 +11,21 @@
 #include <vector>
 #include <iterator>
 #include <algorithm>
-
-using namespace std;
-
+#include <string>
+#include "Country_Trade.h"
 namespace QuickSort{
-    template <typename itr>
-    itr partition(itr left,itr right)
-    {
 
-        itr i=left-1;
+
+    template <typename iterator>
+    iterator partition(iterator left, iterator right)
+    {
+        //iterator i = left - 1;
+        auto i = left-1;
 
         //itr it=left;
         for(auto it = left; it < right ; std::advance(it,1) )
         {
-            if(*it<=*right)
+            if(*it <= *right)
             {
                 using std::swap;
                 ++i;
@@ -36,26 +37,41 @@ namespace QuickSort{
         return ++i;
     }
 
-    template <class itr> // normalemnte para arrays
-    void quicksort(itr left, itr right) {
+    template <typename iterator> // normalemnte para arrays
+    void quicksort(iterator left, iterator right) {
         if (left < right) {
             if (std::distance(left, right) >= 1) {
-                itr pivot = partition(left, right);
+                //iterator pivot = partition(left,right);
+                auto pivot = partition(left, right);
                 quicksort(left, pivot - 1);
                 quicksort(pivot + 1, right);
             }
         }
 
     }
-    template <class Container> //normalmente para vectores
+    template <typename Container> //normalmente para vectores
     void quicksort(Container &c) {
         quicksort(c.begin(), c.end()-1);
     }
 
-    template <class itr, class Container>
-    void imprimir(Container &c, itr iz, itr dr){//pasar el container como parametro no es importante aca
-            std::copy( iz, dr , std::ostream_iterator<int>(std::cout, " "));
+    template <typename iterator, typename Container>
+    void imprimir(Container &c, iterator begin, iterator end){//pasar el container como parametro no es importante aca
+            std::copy( begin, end , std::ostream_iterator<float>(std::cout, " "));
+            std::cout<<std::endl;
+            std::cout<<std::endl;
         }
+
+
+
+
+    template <typename Container>
+    void imprimir_string(Container &c){//pasar el container como parametro no es importante aca
+        for(auto i:c){
+            std::cout<<i<<" ";
+        }
+        std::cout<<std::endl;
+        std::cout<<std::endl;
+    }
 
 }
 
