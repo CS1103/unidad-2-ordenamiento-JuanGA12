@@ -14,7 +14,7 @@
 #include "ShellSort.h"
 #include <string.h>
 #include "Sort.h"
-#include "Country_Trade.cpp"
+#include "Country_Trade.h"
 #include <stdlib.h>
 #include <string.h>
 
@@ -72,7 +72,7 @@ int main() {
     for(auto x = tradee.begin(); x != tradee.end(); advance(x,1)){
         cout << *x<<" ";
     }
-     */
+    */
     Country_Trade fila1(country[0], yearr[0], como[0], floww[0], tradee[0]);
     Country_Trade fila2(country[1], yearr[1], como[1], floww[1], tradee[1]);
     Country_Trade fila3(country[2], yearr[2], como[2], floww[2], tradee[2]);
@@ -93,7 +93,6 @@ int main() {
     Country_Trade fila18(country[17], yearr[17], como[17], floww[17], tradee[17]);
     Country_Trade fila19(country[18], yearr[18], como[18], floww[18], tradee[18]);
     Country_Trade fila20(country[19], yearr[19], como[19], floww[19], tradee[19]);
-
 
     vector<Country_Trade>v1;
     v1.push_back(fila1);
@@ -116,7 +115,12 @@ int main() {
     v1.push_back(fila18);
     v1.push_back(fila19);
     v1.push_back(fila20);
-    auto it = v1.begin();
+
+
+   QuickSort::quicksort(v1);
+    for(auto it = v1.begin(); it != v1.end();advance(it,1)){
+        cout <<*it;
+    }
 /*
     float x[]={-2.2,2.2,0.24,-467,3,9,23,7};
 

@@ -28,6 +28,10 @@ public:
         Flow = f;
         Trade_usd = std::stod(Trade_usd_);
     };
+    bool operator <=(const Country_Trade & ct);
+    bool operator >(const Country_Trade & ct);
+
+    friend std::ostream& operator<< (std::ostream & out, const Country_Trade & ct);
 
    /* const std::string &getCountryArea() const;
 

@@ -25,7 +25,7 @@ namespace MergeSort{
     }
 
     template<typename T>
-    T mergeSort(typename T::iterator begin, typename T::iterator end) {
+    auto mergeSort( T begin, T end) {
         //Tengo la mitad del vector
         auto n = end - begin;
         if (n < 2) {

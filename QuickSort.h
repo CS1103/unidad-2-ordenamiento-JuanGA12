@@ -12,8 +12,11 @@
 #include <iterator>
 #include <algorithm>
 #include <string>
-#include "Country_Trade.h"
+#include "Country_Trade.cpp"
+
+
 namespace QuickSort{
+
 
 
     template <typename iterator>
@@ -25,6 +28,7 @@ namespace QuickSort{
         //itr it=left;
         for(auto it = left; it < right ; std::advance(it,1) )
         {
+
             if(*it <= *right)
             {
                 using std::swap;
