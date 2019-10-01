@@ -18,9 +18,9 @@ public:
     double Trade_usd;
 
 
-
     Country_Trade(const std::string &countryArea, double year, const std::string &commodity, const std::string &flow, double tradeUsd);
 
+    //PARA LECTURA DEL ARCHIVO
     Country_Trade (std::string v, std::string Year_ , std::string c, std::string f, std::string Trade_usd_){
         Country_Area = v;
         Year = std::stod(Year_);
@@ -28,10 +28,13 @@ public:
         Flow = f;
         Trade_usd = std::stod(Trade_usd_);
     };
+
     bool operator <=(const Country_Trade & ct);
     bool operator >(const Country_Trade & ct);
+    bool operator <(const Country_Trade & ct);
 
-    friend std::ostream& operator<< (std::ostream & out, const Country_Trade & ct);
+    // PARA PODER "IMPRIMIR" OBJETOS
+    friend std::ostream& operator << (std::ostream & out, const Country_Trade & ct);
 
    /* const std::string &getCountryArea() const;
 
@@ -55,6 +58,7 @@ public:
 
     Country_Trade operator <= (const Country_Trade& j);
 */
+   // GETTERS Y SETTERS NO NECESARIOS
 };
 
 

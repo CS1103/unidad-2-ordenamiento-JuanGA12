@@ -10,58 +10,106 @@
 #include <iostream>
 #include <vector>
 #include <iterator>
-
+#include "Country_Trade.h"
+#include <algorithm>
 using namespace std;
 
-namespace MergeSort{
+namespace MergeSort {
 
-    template<typename T>
-    //Funcion imprimir
-    void printArray(const T &a) {
-        for (auto i: a) {
-            cout << i << " ";
-        }
-        cout << endl;
-    }
+    template<typename Contenedor>
+    void Sort(vector<Contenedor> &left, vector<Contenedor> &right, vector<Contenedor> &bars) {
+        int nL = left.size();
+        int nR = right.size();
+        int i = 0, j = 0, k = 0;
 
-    template<typename T>
-    auto mergeSort( T begin, T end) {
-        //Tengo la mitad del vector
-        auto n = end - begin;
-        if (n < 2) {
-            return T(begin, end);
-        }
-        auto Primera_mitad = mergeSort<T>(begin, begin + n / 2);
-        auto Segunda_mitad = mergeSort<T>(begin + n / 2, end);
-        auto It1 = Primera_mitad.begin();
-        auto It2 = Segunda_mitad.begin();
-        T merged;
-        while (It1 != Primera_mitad.end() && It2 != Segunda_mitad.end()) {
-            if (*It1 < It2) {
-                merged.push_back(It1);
-                ++It1;
+        while (j < nL && k < nR) {
+            if (left[j] < right[k]) {
+                bars[i] = left[j];
+                j++;
             } else {
-                merged.push_back(It2);
-                ++It2;
+                bars[i] = right[k];
+                k++;
             }
+            i++;
         }
-        while (It1 != Primera_mitad.end()) {
-            merged.push_back(It1);
-            ++It1;
+        while (j < nL) {
+            bars[i] = left[j];
+            j++;
+            i++;
         }
-        while (It2 != Segunda_mitad.end()) {
-            merged.push_back(*It2);
-            ++It2;
+        while (k < nR) {
+            bars[i] = right[k];
+            k++;
+            i++;
         }
-        return merged;
     }
+
+    template<typename Contenedor>
+    void MergeSort(vector<Contenedor> &bar) {
+        if (bar.size() <= 1) return;
+
+        int mid = bar.size() / 2;
+        vector<Contenedor> left;
+        vector<Contenedor> right;
+
+        for (size_t j = 0; j < mid; j++)
+            left.push_back(bar[j]);
+        for (size_t j = 0; j < (bar.size()) - mid; j++)
+            right.push_back(bar[mid + j]);
+
+        MergeSort(left);
+        MergeSort(right);
+        Sort(left, right, bar);
+    }
+
+
+    /*
+
+
+    template<typename Contenedor, typename Comp>
+    void Sort(vector<Contenedor> &left, vector<Contenedor> &right, vector<Contenedor> &bars, const Comp cmp) {
+        int nL = left.size();
+        int nR = right.size();
+        int i = 0, j = 0, k = 0;
+
+        while (j < nL && k < nR) {
+            if (left[j] < right[k]) {
+                bars[i] = left[j];
+                j++;
+            } else {
+                bars[i] = right[k];
+                k++;
+            }
+            i++;
+        }
+        while (j < nL) {
+            bars[i] = left[j];
+            j++;
+            i++;
+        }
+        while (k < nR) {
+            bars[i] = right[k];
+            k++;
+            i++;
+        }
+    }
+
+    template<typename Contenedor, typename Comp>
+    void MergeSort(vector<Contenedor> &bar, const Comp cmp) {
+        if (bar.size() <= 1) return;
+
+        int mid = bar.size() / 2;
+        vector<Contenedor> left;
+        vector<Contenedor> right;
+
+        for (size_t j = 0; j < mid; j++)
+            left.push_back(bar[j]);
+        for (size_t j = 0; j < (bar.size()) - mid; j++)
+            right.push_back(bar[mid + j]);
+
+        MergeSort(left, cmp);
+        MergeSort(right, cmp);
+        Sort(left, right, bar, cmp);
+    }
+     */
 }
- /*esta solo para vectores
- //voy a dormir y continuo bien temprano
- //int main() {
-     vector<int> a = {3, 0, 7, 5, 7, 8, 3, 1};
-     Mergue_Sort::printArray(Mergue_Sort::mergeSort<vector<int>>(a.begin(), a.end()));
-     return 0;
- }
-}
-  */

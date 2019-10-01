@@ -17,10 +17,9 @@
 
 namespace QuickSort{
 
-
-
     template <typename iterator>
-    iterator partition(iterator left, iterator right)
+    //iterator partition(iterator left, iterator right)
+    auto partition(iterator left, iterator right)
     {
         //iterator i = left - 1;
         auto i = left-1;
@@ -41,22 +40,66 @@ namespace QuickSort{
         return ++i;
     }
 
-    template <typename iterator> // normalemnte para arrays
-    void quicksort(iterator left, iterator right) {
+    template <typename iterator>
+    void QuickSort(iterator left, iterator right) {
         if (left < right) {
             if (std::distance(left, right) >= 1) {
                 //iterator pivot = partition(left,right);
                 auto pivot = partition(left, right);
-                quicksort(left, pivot - 1);
-                quicksort(pivot + 1, right);
+                QuickSort(left, pivot - 1);
+                QuickSort(pivot + 1, right);
             }
         }
 
     }
-    template <typename Container> //normalmente para vectores
-    void quicksort(Container &c) {
-        quicksort(c.begin(), c.end()-1);
+    template <typename Container>
+    void QuickSort(Container &c) {
+        QuickSort(c.begin(), c.end()-1);
     }
+
+
+    /*
+    template <typename iterator, typename Comp>
+    auto partition(iterator left, iterator right, const Comp cmp)
+    {
+        //iterator i = left - 1;
+        auto i = left-1;
+
+        //itr it=left;
+        for(auto it = left; it < right ; std::advance(it,1) )
+        {
+
+            if(*it <= *right)
+            {
+                using std::swap;
+                ++i;
+                swap(*i,*it);
+            }
+        }
+
+        std::swap(*(i+1),*right);
+        return ++i;
+    }
+
+    template <typename iterator, typename Comp>
+    void QuickSort(iterator left, iterator right, const Comp cmp) {
+        if (left < right) {
+            if (std::distance(left, right) >= 1) {
+                //iterator pivot = partition(left,right);
+                auto pivot = partition(left, right);
+                QuickSort(left, pivot - 1);
+                QuickSort(pivot + 1, right);
+            }
+        }
+
+    }
+    template <typename Container, typename Comp>
+    void QuickSort(Container &c, const Comp cmp) {
+        QuickSort(c.begin(), c.end()-1, cmp);
+    }
+
+
+
 
     template <typename iterator, typename Container>
     void imprimir(Container &c, iterator begin, iterator end){//pasar el container como parametro no es importante aca
@@ -76,43 +119,7 @@ namespace QuickSort{
         std::cout<<std::endl;
         std::cout<<std::endl;
     }
-
+*/
 }
 
 
-/*
- * template <class Itr>
-    void quicksort(Itr b, Itr e) {
-        if (std::distance(b, e) > 1) {
-            Itr pivot = b + (e-b)/2;
-            quicksort(b, pivot);
-            quicksort(pivot, e);
-
-        }
-    }
-
-// Version to sort a whole container
-    template <class Container>
-    void quicksort(Container &c) {
-        quicksort(c.begin(), c.end());
-    }
-
-
-
-
-    while(it<right)
-        {
-            if(*it<=*right)
-            {
-                using std::swap;
-                ++i;
-                swap(*i,*it);
-            }
-            std::advance(it,1);
-        }
-
-        std::swap(*(i+1),*right);
-        return i++;
-
-
- */

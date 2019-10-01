@@ -15,61 +15,77 @@ using namespace std;
 
 namespace HeapSort{
 
-   /* template <class Container>
-    void HeapSort(Container &cnt){
-        //codigo
 
-    }
-    template <class Container, typename  iter>
-    void heapify(int arr[], int n, int i)
+    template<typename ContainerType>
+    void heap(ContainerType &cnt, int size, int root)
     {
-        int largest = i; // Initialize largest as root
-        int l = 2*i + 1; // left = 2*i + 1
-        int r = 2*i + 2; // right = 2*i + 2
 
-        // If left child is larger than root
-        if (l < n && arr[l] > arr[largest])
-            largest = l;
-
-        // If right child is larger than largest so far
-        if (r < n && arr[r] > arr[largest])
-            largest = r;
-
-        // If largest is not root
-        if (largest != i)
+        int mayor = root;
+        int l = 2*root + 1;
+        int r = 2*root + 2;
+        if (l < size && cnt.at(l) > cnt.at(mayor))
+            mayor = l;
+        if (r < size && cnt.at(r) > cnt.at(mayor))
+            mayor = r;
+        if (mayor != root)
         {
-            swap(arr[i], arr[largest]);
-
-            // Recursively heapify the affected sub-tree
-            heapify(arr, n, largest);
+            swap(cnt.at(root), cnt.at(mayor));
+            heap(cnt, size, mayor);
         }
+
     }
 
-// main function to do heap sort
-    void heapSort(int arr[], int n)
+    template <typename ContainerType>
+    void HeapSort(ContainerType &cnt)
     {
-        // Build heap (rearrange array)
-        for (int i = n / 2 - 1; i >= 0; i--)
-            heapify(arr, n, i);
+        int size = cnt.size();
+        for (int i = size / 2 - 1; i >= 0; i--)
+            heap(cnt, size, i);
 
-        // One by one extract an element from heap
-        for (int i=n-1; i>=0; i--)
+        for (int i=size-1; i>=0; i--)
         {
-            // Move current root to end
-            swap(arr[0], arr[i]);
-
-            // call max heapify on the reduced heap
-            heapify(arr, i, 0);
+            swap(cnt.at(0), cnt.at(i));
+            heap(cnt, i, 0);
         }
+
     }
 
-// A utility function to print array of size n
-    void printArray(int arr[], int n)
+
+
+    /*
+
+    template<typename Container, typename Comp>
+    void heap(Container &cnt, int size, int root, const Comp cmp)
     {
-        for (int i=0; i<n; ++i)
-            cout << arr[i] << " ";
-        cout << "\n";
+
+        int mayor = root;
+        int l = 2*root + 1;
+        int r = 2*root + 2;
+        if (l < size && cnt.at(l) > cnt.at(mayor))
+            mayor = l;
+        if (r < size && cnt.at(r) > cnt.at(mayor))
+            mayor = r;
+        if (mayor != root)
+        {
+            swap(cnt.at(root), cnt.at(mayor));
+            heap(cnt, size, mayor, cmp);
+        }
+
     }
 
-    */
+    template <typename Container, typename Comp>
+    void HeapSort(Container &cnt, const Comp cmp)
+    {
+        int size = cnt.size();
+        for (int i = size / 2 - 1; i >= 0; i--)
+            heap(cnt, size, i,cmp);
+
+        for (int i=size-1; i>=0; i--)
+        {
+            swap(cnt.at(0), cnt.at(i));
+            heap(cnt, i, 0,cmp);
+        }
+
+    }
+     */
 }
