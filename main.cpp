@@ -128,12 +128,6 @@ int main() {
         cout << *ITERADOR <<" ";
     }
 
-    vector<int> v={24,85,1,07,235,2,-14};
-    ShellSort::ShellSort(v);
-    for (auto n:v){
-        cout<< n <<" ";
-    }
-
 
     return 0;
 
